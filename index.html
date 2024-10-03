@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .carousel {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+    }
+
+    .carousel-indicators div {
+      height: 10px;
+      width: 10px;
+      background-color: #fff;
+      margin: 0 5px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="https://via.placeholder.com/600x400?text=Image+1" alt="Image 1">
+      <img src="https://via.placeholder.com/600x400?text=Image+2" alt="Image 2">
+      <img src="https://via.placeholder.com/600x400?text=Image+3" alt="Image 3">
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+    <div class="carousel-indicators">
+      <div class="active"></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <script>
+    const images = document.querySelector('.carousel-images');
+    const indicators = document.querySelectorAll('.carousel-indicators div');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    let index = 0;
+    const totalImages = images.children.length;
+
+    function updateCarousel() {
+      images.style.transform = `translateX(${-index * 100}%)`;
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextImage() {
+      index = (index + 1) % totalImages;
+      updateCarousel();
+    }
+
+    function prevImage() {
+      index = (index - 1 + totalImages) % totalImages;
+      updateCarousel();
+    }
+
+    indicators.forEach((indicator, i) => {
+      indicator.addEventListener('click', () => {
+        index = i;
+        updateCarousel();
+      });
+    });
+
+    prevButton.addEventListener('click', prevImage);
+    nextButton.addEventListener('click', nextImage);
+
+    // Auto-slide every 3 seconds
+    setInterval(nextImage, 3000);
+  </script>
+
+</body>
+</html>
