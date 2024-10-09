@@ -11,9 +11,19 @@
   },
   "dependencies": {
     "@react-native-ml-kit/text-recognition": "^1.2.1",
+    "@react-native-picker/picker": "^2.8.1",
+    "addressit": "^1.8.2",
+    "axios": "^1.7.7",
+    "crypto-js": "^4.2.0",
+    "email-validator": "^2.0.4",
+    "human-name-splitter": "^1.0.1",
+    "libphonenumber-js": "^1.11.11",
     "react": "18.2.0",
     "react-native": "0.72.3",
-    "react-native-image-picker": "^5.6.0"
+    "react-native-dotenv": "^3.4.11",
+    "react-native-fs": "^2.20.0",
+    "react-native-image-picker": "^5.6.0",
+    "react-native-md5": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
